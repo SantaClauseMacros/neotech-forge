@@ -100,40 +100,48 @@ const pcParts = {
     { name: 'AMD Ryzen 9 3950X', socket: 'AM4', ramType: 'DDR4', price: 449.99 },
     { name: 'AMD Ryzen 9 5900X', socket: 'AM4', ramType: 'DDR4', price: 449.99 },
     { name: 'AMD Ryzen 9 5950X', socket: 'AM4', ramType: 'DDR4', price: 549.99 },
-    { name: 'AMD Ryzen 9 5950X', socket: 'AM4', ramType: 'DDR4', price: 549.99 },
     { name: 'AMD Ryzen 9 7900', socket: 'AM5', ramType: 'DDR5', price: 499.99 },
     { name: 'AMD Ryzen 9 7900X', socket: 'AM5', ramType: 'DDR5', price: 549.99 },
+    { name: 'AMD Ryzen 9 7900X3D', socket: 'AM5', ramType: 'DDR5', price: 599.99 },
     { name: 'AMD Ryzen 9 7900X3D', socket: 'AM5', ramType: 'DDR5', price: 599.99 },
     { name: 'AMD Ryzen 9 7950X', socket: 'AM5', ramType: 'DDR5', price: 699.99 },
     { name: 'AMD Ryzen 9 7950X3D', socket: 'AM5', ramType: 'DDR5', price: 749.99 },
   ],
- import React, { useState } from 'react';
-import { Cpu } from 'lucide-react';
-
-const gpus = [
-  // NVIDIA GTX 16 Series
-  { name: 'NVIDIA GeForce GTX 1650', price: 149.99 },
-  { name: 'NVIDIA GeForce GTX 1650 Super', price: 169.99 },
-  { name: 'NVIDIA GeForce GTX 1660', price: 219.99 },
-  { name: 'NVIDIA GeForce GTX 1660 Super', price: 239.99 },
-  { name: 'NVIDIA GeForce GTX 1660 Ti', price: 279.99 },
-  // NVIDIA RTX 20 Series
-  { name: 'NVIDIA GeForce RTX 2060', price: 299.99 },
-  { name: 'NVIDIA GeForce RTX 2060 Super', price: 399.99 },
-  { name: 'NVIDIA GeForce RTX 2070', price: 499.99 },
-  { name: 'NVIDIA GeForce RTX 2070 Super', price: 599.99 },
-  { name: 'NVIDIA GeForce RTX 2080', price: 699.99 },
-  { name: 'NVIDIA GeForce RTX 2080 Super', price: 799.99 },
-  { name: 'NVIDIA GeForce RTX 2080 Ti', price: 999.99 },
-  // NVIDIA RTX 30 Series
-  { name: 'NVIDIA GeForce RTX 3050', price: 249.99 },
-  { name: 'NVIDIA GeForce RTX 3060', price: 329.99 },
-  { name: 'NVIDIA GeForce RTX 3060 Ti', price: 399.99 },
-  { name: 'NVIDIA GeForce RTX 3070', price: 499.99 },
-  { name: 'NVIDIA GeForce RTX 3070 Ti', price: 599.99 },
-  { name: 'NVIDIA GeForce RTX 3080 10GB', price: 699.99 },
-  { name: 'NVIDIA GeForce RTX 3080 12GB', price: 749.99 },
-  { name: 'NVIDIA GeForce RTX 3
+  gpu: [
+    // NVIDIA GTX 16 Series
+    { name: 'NVIDIA GeForce GTX 1650', price: 149.99 },
+    { name: 'NVIDIA GeForce GTX 1650 Super', price: 169.99 },
+    { name: 'NVIDIA GeForce GTX 1660', price: 219.99 },
+    { name: 'NVIDIA GeForce GTX 1660 Super', price: 239.99 },
+    { name: 'NVIDIA GeForce GTX 1660 Ti', price: 279.99 },
+    // NVIDIA RTX 20 Series
+    { name: 'NVIDIA GeForce RTX 2060', price: 299.99 },
+    { name: 'NVIDIA GeForce RTX 2060 Super', price: 399.99 },
+    { name: 'NVIDIA GeForce RTX 2070', price: 499.99 },
+    { name: 'NVIDIA GeForce RTX 2070 Super', price: 599.99 },
+    { name: 'NVIDIA GeForce RTX 2080', price: 699.99 },
+    { name: 'NVIDIA GeForce RTX 2080 Super', price: 799.99 },
+    { name: 'NVIDIA GeForce RTX 2080 Ti', price: 999.99 },
+    // NVIDIA RTX 30 Series
+    { name: 'NVIDIA GeForce RTX 3050', price: 249.99 },
+    { name: 'NVIDIA GeForce RTX 3060', price: 329.99 },
+    { name: 'NVIDIA GeForce RTX 3060 Ti', price: 399.99 },
+    { name: 'NVIDIA GeForce RTX 3070', price: 499.99 },
+    { name: 'NVIDIA GeForce RTX 3070 Ti', price: 599.99 },
+    { name: 'NVIDIA GeForce RTX 3080 10GB', price: 699.99 },
+    { name: 'NVIDIA GeForce RTX 3080 12GB', price: 749.99 },
+    { name: 'NVIDIA GeForce RTX 3080 Ti', price: 1199.99 },
+    { name: 'NVIDIA GeForce RTX 3090', price: 1499.99 },
+    { name: 'NVIDIA GeForce RTX 3090 Ti', price: 1999.99 },
+    // NVIDIA RTX 40 Series
+    { name: 'NVIDIA GeForce RTX 4060', price: 299.99 },
+    { name: 'NVIDIA GeForce RTX 4060 Ti 8GB', price: 399.99 },
+    { name: 'NVIDIA GeForce RTX 4060 Ti 16GB', price: 449.99 },
+    { name: 'NVIDIA GeForce RTX 4070', price: 599.99 },
+    { name: 'NVIDIA GeForce RTX 4070 Ti', price: 799.99 },
+    { name: 'NVIDIA GeForce RTX 4080', price: 1199.99 },
+    { name: 'NVIDIA GeForce RTX 4090', price: 1599.99 },
+  ],
   motherboard: [
     // Intel LGA1200 Motherboards
     { name: 'ASUS ROG Maximus XII Hero', socket: 'LGA1200', ramType: 'DDR4', price: 399.99 },
@@ -209,7 +217,6 @@ const gpus = [
     { name: 'NZXT H510 Flow', price: 89.99 },
   ],
 };
-
 const PartSelector = ({ icon: Icon, label, options, selected, onSelect }) => (
   <div className="mb-4">
     <label className="block text-sm font-medium text-blue-300 mb-1">{label}</label>
@@ -284,7 +291,6 @@ const PCPartsSelector = () => {
         Futuristic PC Parts Selector
       </h1>
       <div className="max-w-4xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
-<div className="max-w-4xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <PartSelector
             icon={Cpu}
@@ -301,6 +307,11 @@ const PCPartsSelector = () => {
             onSelect={(value) => handlePartSelect('motherboard', value)}
           />
           <PartSelector
+            icon={MemoryStick}
+            label="RAM"
+            options={getCompatibleParts('ram')}
+            selected={selectedParts.ram}
+            <PartSelector
             icon={MemoryStick}
             label="RAM"
             options={getCompatibleParts('ram')}
