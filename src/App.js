@@ -107,7 +107,7 @@ const pcParts = {
     { name: 'AMD Ryzen 9 7950X', socket: 'AM5', ramType: 'DDR5', price: 699.99 },
     { name: 'AMD Ryzen 9 7950X3D', socket: 'AM5', ramType: 'DDR5', price: 749.99 },
   ],
-  gpu: [
+gpu: [
     // NVIDIA GTX 16 Series
     { name: 'NVIDIA GeForce GTX 1650', price: 149.99 },
     { name: 'NVIDIA GeForce GTX 1650 Super', price: 169.99 },
