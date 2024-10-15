@@ -291,7 +291,7 @@ const PCPartsSelector = () => {
         Futuristic PC Parts Selector
       </h1>
       <div className="max-w-4xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <PartSelector
             icon={Cpu}
             label="CPU"
@@ -307,11 +307,6 @@ const PCPartsSelector = () => {
             onSelect={(value) => handlePartSelect('motherboard', value)}
           />
           <PartSelector
-            icon={MemoryStick}
-            label="RAM"
-            options={getCompatibleParts('ram')}
-            selected={selectedParts.ram}
-            <PartSelector
             icon={MemoryStick}
             label="RAM"
             options={getCompatibleParts('ram')}
