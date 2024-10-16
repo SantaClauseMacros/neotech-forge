@@ -453,6 +453,7 @@ const pcParts = {
   ],
 };
 
+
 const PartSelector = ({ icon: Icon, label, options, selected, onSelect }) => (
   <motion.div
     className="mb-6"
@@ -464,11 +465,11 @@ const PartSelector = ({ icon: Icon, label, options, selected, onSelect }) => (
       <Icon className="mr-2" size={18} />
       {label}
     </label>
-    <div className="relative">
+    <div className="relative group">
       <select
         value={selected}
         onChange={(e) => onSelect(e.target.value)}
-        className="block appearance-none w-full bg-gray-800 border border-blue-500 text-white py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-gray-700 focus:border-blue-300 transition-colors duration-200"
+        className="block appearance-none w-full bg-gray-800 bg-opacity-50 border border-blue-500 text-white py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-gray-700 focus:border-blue-300 transition-all duration-300 hover:border-blue-400 group-hover:shadow-lg group-hover:shadow-blue-500/50"
       >
         <option value="">Select {label}</option>
         {options.map((option) => (
@@ -544,23 +545,27 @@ const PCPartsSelector = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white p-8">
+    <div className="min-h-screen bg-black text-white p-8 overflow-hidden relative">
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80')] opacity-20 bg-cover bg-center" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-black opacity-80" />
+      
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-center mb-12"
+        className="text-center mb-12 relative z-10"
       >
-        <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-          QuantumForge
+        <h1 className="text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
+          NeoTech Forge
         </h1>
-        <p className="text-xl text-blue-300">Advanced PC Parts Selector</p>
+        <p className="text-xl text-blue-300">Craft Your Future-Ready PC</p>
       </motion.div>
+
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="max-w-6xl mx-auto bg-gray-800 bg-opacity-50 p-8 rounded-2xl shadow-2xl backdrop-filter backdrop-blur-lg"
+        className="max-w-6xl mx-auto bg-gray-900 bg-opacity-50 p-8 rounded-2xl shadow-2xl backdrop-filter backdrop-blur-lg border border-blue-500/30 relative z-10"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <PartSelector
@@ -634,18 +639,30 @@ const PCPartsSelector = () => {
           transition={{ delay: 0.5, duration: 0.5 }}
         >
           <h2 className="text-3xl font-bold mb-4 text-blue-300">Total Cost</h2>
-          <p className="text-5xl font-bold text-green-400 mb-6">${totalCost.toFixed(2)}</p>
+          <motion.div
+            className="text-6xl font-bold text-green-400 mb-6 flex items-center justify-center"
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 100 }}
+          >
+            <DollarSign className="mr-2" size={48} />
+            <span>{totalCost.toFixed(2)}</span>
+          </motion.div>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full flex items-center justify-center mx-auto transition-colors duration-200"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full flex items-center justify-center mx-auto transition-colors duration-200 group"
             onClick={resetSelection}
           >
-            <RefreshCw className="mr-2" size={20} />
-            Reset Selection
+            <RefreshCw className="mr-2 group-hover:rotate-180 transition-transform duration-300" size={20} />
+            Reset Build
           </motion.button>
         </motion.div>
       </motion.div>
+      
+      <div className="mt-8 text-center text-blue-300 relative z-10">
+        <p>&copy; 2024 NeoTech Forge. Empowering the future of custom PCs.</p>
+      </div>
     </div>
   );
 };
