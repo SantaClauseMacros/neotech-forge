@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { ChevronDown, Cpu, HardDrive, MemoryStick, Monitor, Zap, Fan, Package } from 'lucide-react';
+import { ChevronDown, Cpu, HardDrive, MemoryStick, Monitor, Zap, Fan, Package, RefreshCw } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const pcParts = {
   cpu: [
@@ -453,13 +454,21 @@ const pcParts = {
 };
 
 const PartSelector = ({ icon: Icon, label, options, selected, onSelect }) => (
-  <div className="mb-4">
-    <label className="block text-sm font-medium text-blue-300 mb-1">{label}</label>
+  <motion.div
+    className="mb-6"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+  >
+    <label className="block text-sm font-medium text-blue-300 mb-2 flex items-center">
+      <Icon className="mr-2" size={18} />
+      {label}
+    </label>
     <div className="relative">
       <select
         value={selected}
         onChange={(e) => onSelect(e.target.value)}
-        className="block appearance-none w-full bg-gray-800 border border-gray-700 text-white py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-gray-700 focus:border-gray-500"
+        className="block appearance-none w-full bg-gray-800 border border-blue-500 text-white py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-gray-700 focus:border-blue-300 transition-colors duration-200"
       >
         <option value="">Select {label}</option>
         {options.map((option) => (
@@ -468,11 +477,11 @@ const PartSelector = ({ icon: Icon, label, options, selected, onSelect }) => (
           </option>
         ))}
       </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-blue-300">
         <ChevronDown size={20} />
       </div>
     </div>
-  </div>
+  </motion.div>
 );
 
 const PCPartsSelector = () => {
@@ -491,7 +500,6 @@ const PCPartsSelector = () => {
   const handlePartSelect = (part, value) => {
     setSelectedParts((prev) => ({ ...prev, [part]: value }));
     
-    // Reset incompatible parts
     if (part === 'cpu') {
       setSelectedParts((prev) => ({ ...prev, motherboard: '', ram: '' }));
     }
@@ -521,13 +529,40 @@ const PCPartsSelector = () => {
     }, 0);
   }, [selectedParts]);
 
+  const resetSelection = () => {
+    setSelectedParts({
+      cpu: '',
+      motherboard: '',
+      ram: '',
+      gpu: '',
+      storage: '',
+      psu: '',
+      cooler: '',
+      case: '',
+      fans: '',
+    });
+  };
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-8">
-      <h1 className="text-4xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-        Futuristic PC Parts Selector
-      </h1>
-      <div className="max-w-4xl mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white p-8">
+      <motion.div
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-center mb-12"
+      >
+        <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+          QuantumForge
+        </h1>
+        <p className="text-xl text-blue-300">Advanced PC Parts Selector</p>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-6xl mx-auto bg-gray-800 bg-opacity-50 p-8 rounded-2xl shadow-2xl backdrop-filter backdrop-blur-lg"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <PartSelector
             icon={Cpu}
             label="CPU"
@@ -592,11 +627,25 @@ const PCPartsSelector = () => {
             onSelect={(value) => handlePartSelect('fans', value)}
           />
         </div>
-        <div className="mt-8 text-center">
-          <h2 className="text-2xl font-bold mb-2">Total Cost</h2>
-          <p className="text-3xl font-bold text-green-500">${totalCost.toFixed(2)}</p>
-        </div>
-      </div>
+        <motion.div
+          className="mt-12 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+        >
+          <h2 className="text-3xl font-bold mb-4 text-blue-300">Total Cost</h2>
+          <p className="text-5xl font-bold text-green-400 mb-6">${totalCost.toFixed(2)}</p>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full flex items-center justify-center mx-auto transition-colors duration-200"
+            onClick={resetSelection}
+          >
+            <RefreshCw className="mr-2" size={20} />
+            Reset Selection
+          </motion.button>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
