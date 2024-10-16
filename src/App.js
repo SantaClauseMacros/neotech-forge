@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { ChevronDown, Cpu, HardDrive, MemoryStick, Monitor, Zap, Fan, Package, RefreshCw } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ChevronDown, Cpu, HardDrive, MemoryStick, Monitor, Zap, Fan, Package, RefreshCw, DollarSign } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const pcParts = {
   cpu: [
