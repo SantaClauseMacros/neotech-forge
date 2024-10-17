@@ -16,6 +16,7 @@ function Homepage() {
       <div className="cta-container">
         <Link to="/pc-part-picker" className="cta-button">Craft Your Custom Rig</Link>
         <Link to="/prebuilt-systems" className="cta-button">Explore Our Prebuilts</Link>
+        <Link to="/prebuilts" className="cta-button">Explore Our Prebuilts</Link>
       </div>
     </div>
   );
