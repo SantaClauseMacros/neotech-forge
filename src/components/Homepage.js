@@ -14,7 +14,7 @@ function Homepage() {
         <li>PCIe 5.0 Compatibility</li>
       </ul>
       <div className="cta-container">
-        <Link to="/pc-part-picker" className="cta-button">Craft Your Custom Rig</Link>
+        <Link to="/custom" className="cta-button">Craft Your Custom Rig</Link>
         <Link to="/prebuilts" className="cta-button">Explore Our Prebuilts</Link>
       </div>
     </div>
