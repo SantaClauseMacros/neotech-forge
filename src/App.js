@@ -11,7 +11,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/" component={Homepage} />
-          <Route path="/pc-part-picker" component={PCPartPicker} />
+          <Route path="/custom" component={PCPartPicker} />
           <Route path="/prebuilts" component={Prebuilts} />
         </Switch>
       </div>
