@@ -237,6 +237,57 @@ body, html {
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
 }
 
+/* Prebuilts Styles */
+.prebuilts-container {
+  padding: 2rem;
+}
+
+.prebuilt-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.prebuilt-item {
+  background: rgba(10, 10, 42, 0.6);
+  padding: 1.5rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.prebuilt-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0, 255, 255, 0.4);
+}
+
+.prebuilt-item h2 {
+  color: var(--neon-blue);
+  margin-bottom: 1rem;
+}
+
+.prebuilt-item ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.prebuilt-item li {
+  margin-bottom: 0.5rem;
+}
+
+.prebuilt-item .price {
+  font-size: 1.2em;
+  color: var(--neon-pink);
+  margin-bottom: 1rem;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 2rem;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .logo {
@@ -249,6 +300,9 @@ body, html {
     flex-direction: column;
   }
   .parts-grid {
+    grid-template-columns: 1fr;
+  }
+  .prebuilt-list {
     grid-template-columns: 1fr;
   }
 }
