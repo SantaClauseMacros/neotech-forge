@@ -450,7 +450,7 @@ const pcParts = {
     { name: 'SilverStone AP140', price: 20 },
     { name: 'Noctua NF-A14 iPPC', price: 30 },
   ],
-};
+ };
 
 function PCPartPicker() {
   const [selectedParts, setSelectedParts] = useState({
@@ -464,6 +464,8 @@ function PCPartPicker() {
     case: '',
     fans: ''
   });
+
+  const [cart, setCart] = useState([]);
 
   const handlePartSelect = (partType, partName) => {
     setSelectedParts(prev => ({ ...prev, [partType]: partName }));
@@ -493,6 +495,25 @@ function PCPartPicker() {
     }, 0);
   }, [selectedParts]);
 
+  const addToCart = () => {
+    if (Object.values(selectedParts).every(part => part)) {
+      setCart([...cart, { parts: selectedParts, totalCost }]);
+      setSelectedParts({
+        cpu: '',
+        gpu: '',
+        motherboard: '',
+        ram: '',
+        storage: '',
+        psu: '',
+        cooler: '',
+        case: '',
+        fans: ''
+      });
+    } else {
+      alert('Please select all parts before adding to cart.');
+    }
+  };
+
   return (
     <div className="container">
       <h1 className="logo">PC Part Picker</h1>
@@ -519,6 +540,16 @@ function PCPartPicker() {
       <div className="total-cost">
         <h2>Total Cost: ${totalCost.toFixed(2)}</h2>
       </div>
+      
+      <button onClick={addToCart} className="cta-button">Add to Cart</button>
+      
+      <h2>Cart</h2>
+      {cart.map((item, index) => (
+        <div key={index} className="cart-item">
+          <h3>Build {index + 1}</h3>
+          <p>Total Cost: ${item.totalCost.toFixed(2)}</p>
+        </div>
+      ))}
       
       <Link to="/" className="cta-button">Back to Home</Link>
     </div>
