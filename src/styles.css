@@ -1,12 +1,3 @@
-/* Add these styles to your existing CSS */
-
-.cart-item {
-  background-color: rgba(10, 10, 42, 0.6);
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 5px;
-}
-
 .prebuilt-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
